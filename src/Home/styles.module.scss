@@ -1,0 +1,69 @@
+@use "../assets/css/colors" as colors;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.pageTitle {
+  margin-bottom: 40px;
+  color: colors.$primary;
+  font-size: 2.2rem;
+}
+
+.add {
+  padding: 7px 20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  width: fit-content;
+  border: 2px solid colors.$primary;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: transparent;
+  color: colors.$primary;
+  align-self: flex-end;
+  cursor: pointer;
+
+  &:hover {
+    background-color: colors.$primary;
+    color: white;
+  }
+}
+
+.tabelSlik {
+  width: 100%;
+  border-collapse: collapse;
+  
+  td {
+    padding: 10px;
+    text-align: center;
+
+    &:nth-child(2) {
+      text-align: start;
+    }
+  }
+  
+  thead td {
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    background-color: colors.$primary;
+
+    &:first-child {
+      border-top-left-radius: 20px;
+    }
+    &:last-child {
+      border-top-right-radius: 20px;
+    }
+  }
+  tbody {
+    td {
+      border-bottom: 1px solid gray;
+    }
+    tr:hover {
+      background-color: lightcyan;
+    }
+  }
+}
