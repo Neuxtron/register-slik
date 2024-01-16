@@ -19,27 +19,36 @@
     background-color: white;
     border-radius: 20px;
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
+}
 
-    button {
-      padding: 7px 20px;
-      margin-top: 30px;
-      width: fit-content;
+.actions {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 30px;
+  
+  button {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 7px 20px;
+    
+    &:first-child {
       border: 2px solid colors.$primary;
       border-radius: 7px;
-      font-size: 1rem;
-      font-weight: bold;
-      background-color: transparent;
       color: colors.$primary;
-      align-self: flex-end;
-      cursor: pointer;
     
       &:hover {
         background-color: colors.$primary;
         color: white;
+      }
+    }
+    &:last-child {
+      border: none;
+      color: gray;
+
+      &:hover {
+        color: colors.$primary;
       }
     }
   }

@@ -14,7 +14,10 @@ function TambahPage() {
         <form onSubmit={onTambah}>
           <TambahInput label="Nama" name="nama" placeholder="Masukkan nama..." />
           <TambahInput label="NIK" name="nik" type="number" placeholder="Masukkan NIK..." />
-          <button>Tambah</button>
+          <div className={styles.actions}>
+            <button>Tambah</button>
+            <button>Batal</button>
+          </div>
         </form>
       </div>
     </div>
