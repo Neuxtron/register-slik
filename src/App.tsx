@@ -1,4 +1,4 @@
-import HomePage from "./Home"
+import HomePage from "./pages/Home"
 import "./assets/css/global.scss"
 
 function App() {
