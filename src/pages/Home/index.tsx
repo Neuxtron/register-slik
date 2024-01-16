@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router"
 import styles from "./styles.module.scss"
 
 type Slik = {
@@ -35,6 +36,8 @@ const dummySlik: Slik[] = [
 ]
 
 function HomePage() {
+  const navigate = useNavigate()
+
   function getNomorRegistrasi(tanggal: Date): string {
     // TODO: ambil nomor slik
     const slikRaw = 0
@@ -44,11 +47,20 @@ function HomePage() {
 
     return `${noSlik}/AAA/123/${bulan}/${tahun}`
   }
-  
+
+  const onTambah = () => {
+    navigate("/tambah")
+  }
+
   return (
+    // TODO: refactor
     <div className={styles.home}>
       <h1 className={styles.pageTitle}>Registrasi Slik</h1>
-      <button className={styles.add}>+ Tambah</button>
+
+      <button className={styles.add} onClick={onTambah}>
+        + Tambah
+      </button>
+
       <table className={styles.tabelSlik}>
         <thead>
           <tr>
@@ -58,24 +70,18 @@ function HomePage() {
             <td>NIK</td>
           </tr>
         </thead>
-        <tbody>{dummySlik.map((slik) => {
-          return (
-            <tr>
-              <td>
-                {slik.tanggal.toLocaleDateString()}
-              </td>
-              <td>
-                {slik.nama}
-              </td>
-              <td>
-                {getNomorRegistrasi(slik.tanggal)}
-              </td>
-              <td>
-                {slik.nik}
-              </td>
-            </tr>
-          )
-        })}</tbody>
+        <tbody>
+          {dummySlik.map((slik) => {
+            return (
+              <tr>
+                <td>{slik.tanggal.toLocaleDateString()}</td>
+                <td>{slik.nama}</td>
+                <td>{getNomorRegistrasi(slik.tanggal)}</td>
+                <td>{slik.nik}</td>
+              </tr>
+            )
+          })}
+        </tbody>
       </table>
     </div>
   )
