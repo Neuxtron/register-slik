@@ -8,7 +8,7 @@ type Slik = {
   tanggal: Date
   nama: string
   noSlik: number
-  nik: number
+  nik: string
 }
 
 const dummySlik: Slik[] = [
@@ -16,25 +16,25 @@ const dummySlik: Slik[] = [
     tanggal: new Date(2024, 0, 16),
     nama: "zuzuzu",
     noSlik: 0,
-    nik: 1271031905030004,
+    nik: "1271031905030004",
   },
   {
     tanggal: new Date(2024, 0, 16),
     nama: "zuzuzu",
     noSlik: 0,
-    nik: 1271031905030004,
+    nik: "1271031905030004",
   },
   {
     tanggal: new Date(2024, 0, 16),
     nama: "zuzuzu",
     noSlik: 0,
-    nik: 1271031905030004,
+    nik: "1271031905030004",
   },
   {
     tanggal: new Date(2024, 0, 16),
     nama: "zuzuzu",
     noSlik: 0,
-    nik: 1271031905030004,
+    nik: "1271031905030004",
   },
 ]
 
@@ -47,7 +47,7 @@ function HomePage() {
   function getNomorRegistrasi(tanggal: Date): string {
     // TODO: ambil nomor slik
     const slikRaw = 0
-    const noSlik = ("00" + slikRaw).slice(-2)
+    const noSlik = ("000" + slikRaw).slice(-3)
     const bulan = ("00" + (tanggal.getMonth() + 1)).slice(-2)
     const tahun = tanggal.getFullYear()
 
