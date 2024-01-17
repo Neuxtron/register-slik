@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router"
 import styles from "./styles.module.scss"
+import { IoFilter } from "react-icons/io5";
 
 type Slik = {
   tanggal: Date
@@ -52,10 +53,23 @@ function HomePage() {
     navigate("/tambah")
   }
 
+  const toggleFilter = () => {
+    console.log("AAAAAAAAA")
+    
+  }
+
   return (
     // TODO: refactor
     <div className={styles.home}>
       <h1 className={styles.pageTitle}>Registrasi Slik</h1>
+
+      {/* TODO: search functionality */}
+      <div className={styles.filter}>
+        <input type="text" placeholder="Cari Nama / NIK / Nomor Registrasi..." />
+        <button className={styles.filter} onClick={toggleFilter}>
+          <IoFilter />
+        </button>
+      </div>
 
       <button className={styles.add} onClick={onTambah}>
         + Tambah

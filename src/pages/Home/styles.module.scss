@@ -7,9 +7,9 @@
 }
 
 .pageTitle {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   color: colors.$primary;
-  font-size: 2.2rem;
+  font-size: 2.3rem;
 }
 
 .add {
@@ -48,7 +48,7 @@
   thead td {
     color: white;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     background-color: colors.$primary;
 
     &:first-child {
@@ -65,5 +65,26 @@
     tr:hover {
       background-color: lightcyan;
     }
+  }
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 500px;
+    padding: 10px 20px;
+    border-radius: 1000px;
+    border: 1px solid gray;
+    font-size: 1.1rem;
+  }
+  button {
+    cursor: pointer;
+    margin-left: 20px;
+    color: colors.$primary;
+    font-size: 1.3rem;
+    background-color: transparent;
+    border: none;
   }
 }
