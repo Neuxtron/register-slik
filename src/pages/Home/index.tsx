@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router"
 import styles from "./styles.module.scss"
-import { IoFilter } from "react-icons/io5";
+import { IoFilter } from "react-icons/io5"
+import { FormEvent, createRef, useState } from "react"
+import FilterContainer from "./FilterContainer"
 
 type Slik = {
   tanggal: Date
@@ -38,6 +40,9 @@ const dummySlik: Slik[] = [
 
 function HomePage() {
   const navigate = useNavigate()
+  const [showFilter, setShowFilter] = useState(false)
+  const cariRef = createRef<HTMLInputElement>()
+  const filterRef = createRef<HTMLFormElement>()
 
   function getNomorRegistrasi(tanggal: Date): string {
     // TODO: ambil nomor slik
@@ -54,8 +59,24 @@ function HomePage() {
   }
 
   const toggleFilter = () => {
-    console.log("AAAAAAAAA")
-    
+    setShowFilter((prev) => !prev)
+  }
+
+  const cari = (tgl: string = "", bln: string = "", thn: string = "") => {
+    const cariText = cariRef.current!.value
+
+    console.log(tgl)
+    console.log(bln)
+    console.log(thn)
+    console.log(cariText)
+  }
+  const onCari = (event: FormEvent) => {
+    event.preventDefault()
+    if (!showFilter) {
+      cari()
+      return
+    }
+    filterRef.current?.requestSubmit()
   }
 
   return (
@@ -64,12 +85,23 @@ function HomePage() {
       <h1 className={styles.pageTitle}>Registrasi Slik</h1>
 
       {/* TODO: search functionality */}
-      <div className={styles.filter}>
-        <input type="text" placeholder="Cari Nama / NIK / Nomor Registrasi..." />
-        <button className={styles.filter} onClick={toggleFilter}>
+      <form className={styles.filter} onSubmit={onCari}>
+        <input
+          type="text"
+          placeholder="Cari Nama / NIK / Nomor Registrasi..."
+          ref={cariRef}
+        />
+        <button
+          className={styles.filterBtn}
+          onClick={toggleFilter}
+          type="button"
+        >
           <IoFilter />
         </button>
-      </div>
+        {!showFilter ? <button className={styles.cari}>Cari</button> : null}
+      </form>
+
+      <FilterContainer showFilter={showFilter} cari={cari} ref={filterRef} />
 
       <button className={styles.add} onClick={onTambah}>
         + Tambah
@@ -86,8 +118,9 @@ function HomePage() {
         </thead>
         <tbody>
           {dummySlik.map((slik) => {
+            const key = crypto.randomUUID()
             return (
-              <tr>
+              <tr key={key}>
                 <td>{slik.tanggal.toLocaleDateString()}</td>
                 <td>{slik.nama}</td>
                 <td>{getNomorRegistrasi(slik.tanggal)}</td>
