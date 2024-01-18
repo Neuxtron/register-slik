@@ -8,6 +8,7 @@ fn main() {
     Migration {
       version: 1,
       description: "create_initial_tables",
+      // OPTIMIZE: next time use camel case for naming columns
       sql:
       "CREATE TABLE slik (
         id INTEGER PRIMARY KEY,

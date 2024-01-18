@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, LegacyRef, RefObject, forwardRef } from "react"
+import { ChangeEvent, Dispatch, FormEvent, LegacyRef, RefObject, forwardRef } from "react"
 import { IoFilter } from "react-icons/io5"
 import styles from "./styles.module.scss"
 
@@ -6,12 +6,13 @@ interface Props {
   showFilter: boolean
   cari: (tgl?: string, bln?: string, thn?: string) => void
   filterRef: RefObject<HTMLFormElement>,
-  setShowFilter: Dispatch<React.SetStateAction<boolean>>
+  setShowFilter: Dispatch<React.SetStateAction<boolean>>,
+  stopSearching: () => void
 }
 
 const FilterSlik = forwardRef(
   (
-    { showFilter, cari, filterRef, setShowFilter }: Props,
+    { showFilter, cari, filterRef, setShowFilter, stopSearching }: Props,
     ref: LegacyRef<HTMLInputElement> | undefined
   ) => {
 
@@ -28,11 +29,17 @@ const FilterSlik = forwardRef(
       filterRef.current?.requestSubmit()
     }
 
+    const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value
+      if (value === "") stopSearching()
+    }
+
     return (
       <form className={styles.filter} onSubmit={onCari}>
         <input
           type="text"
           placeholder="Cari Nama / NIK / Nomor Registrasi..."
+          onChange={onInputChange}
           ref={ref}
         />
         <button

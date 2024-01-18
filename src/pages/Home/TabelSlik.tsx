@@ -1,8 +1,12 @@
-import { dummySlik } from "../../utils/slik"
+import { Slik } from "../../utils/slik"
 import SlikItem from "./SlikItem"
 import styles from "./styles.module.scss"
 
-function TabelSlik() {
+interface Props {
+  listSlik: Slik[]
+}
+
+function TabelSlik({ listSlik }: Props) {
   return (
     <table className={styles.tabelSlik}>
       <thead>
@@ -14,7 +18,7 @@ function TabelSlik() {
         </tr>
       </thead>
       <tbody>
-        {dummySlik.map((slik) => {
+        {listSlik.map((slik) => {
           const key = crypto.randomUUID()
           return <SlikItem key={key} slik={slik} />
         })}

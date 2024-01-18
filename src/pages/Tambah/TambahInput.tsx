@@ -1,3 +1,4 @@
+import { LegacyRef, forwardRef } from "react"
 import styles from "./styles.module.scss"
 
 interface Props {
@@ -7,11 +8,12 @@ interface Props {
   type?: string,
 }
 
-function TambahInput({ label, name, placeholder, type = "text" }: Props) {
+const TambahInput = forwardRef(({ label, name, placeholder, type = "text" }: Props, ref: LegacyRef<HTMLInputElement> | undefined) => {
   return (
     <div className={styles.tambahInput}>
       <label htmlFor={name}>{label}</label>
       <input
+        ref={ref}
         type={type}
         id={name}
         name={name}
@@ -20,6 +22,6 @@ function TambahInput({ label, name, placeholder, type = "text" }: Props) {
       />
     </div>
   )
-}
+})
 
 export default TambahInput
