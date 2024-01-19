@@ -27,33 +27,43 @@ function HomePage() {
 
   const cari = (tgl: string = "", bln: string = "", thn: string = "") => {
     const cariText = cariRef.current!.value
-
-    {
-      /* TODO: filter date functionality */
-    }
-
+    
     const filtered = listSlik.filter((slik) => {
-      const noRegistrasi = getNomorRegistrasi(slik.tanggal, slik.noSlik)
-      const nik = slik.nik.toString()
-
-      const containsNama = slik.nama
-        .toLocaleLowerCase()
-        .includes(cariText.toLowerCase())
-      const containsNoSlik = noRegistrasi
-        .toLocaleLowerCase()
-        .includes(cariText.toLowerCase())
-      const containsNik = nik
-        .toLocaleLowerCase()
-        .includes(cariText.toLowerCase())
-
-      if (containsNama || containsNoSlik || containsNik) return true
-      return false
+      if (!filterText(slik, cariText)) return false
+      if (showFilter && !filterTanggal(slik, tgl, bln, thn)) return false
+      return true
     })
     setFilteredSlik(filtered)
 
-    console.log(filteredSlik)
-
     isSearching.current = true
+  }
+
+  function filterText(slik: Slik, text: string) {
+    if (text === "") return true
+    const noRegistrasi = getNomorRegistrasi(slik.tanggal, slik.noSlik)
+    const nik = slik.nik.toString()
+
+    const containsNama = slik.nama
+      .toLocaleLowerCase()
+      .includes(text.toLowerCase())
+    const containsNoSlik = noRegistrasi
+      .toLocaleLowerCase()
+      .includes(text.toLowerCase())
+    const containsNik = nik
+      .toLocaleLowerCase()
+      .includes(text.toLowerCase())
+
+    if (containsNama || containsNoSlik || containsNik) return true
+    return false
+  }
+
+  function filterTanggal(slik: Slik, tgl: string, bln: string, thn: string) {
+    const matchDate = tgl !== "" ? parseInt(tgl) === slik.tanggal.getDate() : true
+    const matchMonth = bln !== "" ? parseInt(bln) === slik.tanggal.getMonth() : true
+    const matchYear = thn !== "" ? parseInt(thn) === slik.tanggal.getFullYear() : true
+
+    if (matchDate && matchMonth && matchYear) return true
+    return false
   }
 
   if (loading) return "Loading..."

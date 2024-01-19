@@ -36,8 +36,6 @@ function TambahPage() {
       noSlik
     }
     insertSlikUpdate(slik)
-    console.log(slik);
-    
     
     navigate("/")
   }

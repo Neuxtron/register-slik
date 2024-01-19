@@ -1,4 +1,4 @@
-import { FormEvent, LegacyRef, createRef, forwardRef } from "react"
+import { ChangeEvent, FormEvent, LegacyRef, createRef, forwardRef, useState } from "react"
 import FilterItem from "./FilterItem"
 import PilihanBulan from "./PilihanBulan"
 import styles from "./styles.module.scss"
@@ -16,10 +16,15 @@ const FilterContainer = forwardRef(
     const tglRef = createRef<HTMLInputElement>()
     const blnRef = createRef<any>()
     const thnRef = createRef<HTMLInputElement>()
+    const [blnVal, setBlnVal] = useState("")
 
     const onFilter = (event: FormEvent) => {
       event.preventDefault()
       cari(tglRef.current?.value, blnRef.current?.value, thnRef.current?.value)
+    }
+
+    const onChangeBln = (event: ChangeEvent<HTMLSelectElement>) => {
+      setBlnVal(event.target.value)
     }
 
     if (!showFilter) return null
@@ -38,7 +43,7 @@ const FilterContainer = forwardRef(
             />
 
             <FilterItem label="Bulan:" name="bulan">
-              <select ref={blnRef} name="bulan" id="bulan">
+              <select ref={blnRef} name="bulan" id="bulan" value={blnVal} onChange={onChangeBln}>
                 <PilihanBulan />
               </select>
             </FilterItem>
