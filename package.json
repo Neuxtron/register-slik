@@ -11,6 +11,8 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.7",
     "@reduxjs/toolkit": "^2.0.1",
     "@tauri-apps/api": "^1.5.3",
     "react": "^18.2.0",

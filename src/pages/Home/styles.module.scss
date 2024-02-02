@@ -38,11 +38,25 @@
   border-collapse: collapse;
   
   td {
-    padding: 10px;
-    text-align: center;
+    padding: 13px;
 
-    &:nth-child(2) {
-      text-align: start;
+    &:nth-child(1) {
+      width: 200px;
+    }
+    &:nth-child(3) {
+      width: 200px;
+    }
+    &:nth-child(4) {
+      width: 300px;
+    }
+    &:nth-child(5) {
+      width: 200px;
+    }
+  }
+
+  tbody {
+    & td:nth-child(1) {
+      text-align: center;
     }
   }
   
@@ -54,6 +68,7 @@
 
     &:first-child {
       border-top-left-radius: 20px;
+      text-align: center;
     }
     &:last-child {
       border-top-right-radius: 20px;
@@ -63,9 +78,17 @@
     td {
       border-bottom: 1px solid gray;
     }
-    tr:hover {
-      background-color: lightcyan;
+    tr:nth-child(even) td {
+      background-color: mix(colors.$primary, white, 15%);
     }
+  }
+
+  td a {
+    text-decoration: none;
+    background-color: colors.$primary;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 25px;
   }
 }
 

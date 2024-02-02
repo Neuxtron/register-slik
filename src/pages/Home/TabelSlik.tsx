@@ -15,6 +15,7 @@ function TabelSlik({ listSlik }: Props) {
           <td>Nama</td>
           <td>Nomor Registrasi Slik</td>
           <td>NIK</td>
+          <td>Aksi</td>
         </tr>
       </thead>
       <tbody>

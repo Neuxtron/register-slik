@@ -1,4 +1,5 @@
 type Slik = {
+  id?: number,
   tanggal: Date
   nama: string
   noSlik: number
